@@ -48,8 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-
-    const galleryHTML = images.map(image => `
+    const galleryHTML = imagesData.map(image => `
         <li class="gallery-item">
             <a class="gallery-link" href="${image.original}" onclick="event.preventDefault()">
                 <img class="gallery-image" src="${image.preview}" alt="${image.description}" data-source="${image.original}">
@@ -60,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
     gallery.innerHTML = galleryHTML;
 
     gallery.addEventListener('click', function(event) {
-        const source = event.target.dataset.source;
+        const target = event.target;
+        const source = target.dataset.source;
         if (source) {
             const instance = basicLightbox.create(`
                 <img src="${source}" width="800" height="600">
